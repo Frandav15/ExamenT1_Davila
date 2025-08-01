@@ -32,6 +32,12 @@ public class Estudiante {
         Nombre = nombre;
     }
 
+    public Estudiante(String nombre, String email, String matricula) {
+        this.Nombre = nombre;
+        this.Email = email;
+    }
+
+
     public Long getId() {
         return Id;
     }

@@ -38,6 +38,9 @@ public class Curso {
         Nombre = nombre;
     }
 
+    public Curso(String nombre, String codigo, int creditos) {
+    }
+
     public Long getId() {
         return Id;
     }

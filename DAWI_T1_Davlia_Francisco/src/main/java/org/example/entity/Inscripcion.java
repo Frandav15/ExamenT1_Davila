@@ -23,11 +23,33 @@ public class Inscripcion {
     @JoinColumn(name = "estudiante_id")
     private Estudiante estudiante;
 
-    public Inscripcion(Long id, Estudiante estudiante, Curso curso, Date fechaInscrpcion) {
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado", nullable = false)
+    private Estado estado;
+
+    public Inscripcion(Estudiante estudiante, Curso curso, Date date, Estado estado) {
+    }
+
+    public enum Estado {
+        PENDIENTE,
+        CONFIRMADA,
+        CANCELADA
+    }
+
+    public Inscripcion(Long id, Estado estado, Estudiante estudiante, Curso curso, Date fechaInscrpcion) {
         Id = id;
+        this.estado = estado;
         this.estudiante = estudiante;
         this.curso = curso;
         FechaInscrpcion = fechaInscrpcion;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
     public Long getId() {

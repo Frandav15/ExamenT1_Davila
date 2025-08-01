@@ -28,8 +28,9 @@ public class Profesor {
         Nombre = nombre;
     }
 
-    public Profesor() {
 
+
+    public Profesor(String nombre, String especialidad) {
     }
 
     public Long getId() {
