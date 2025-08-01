@@ -6,10 +6,7 @@ import jakarta.persistence.Persistence;
 import org.example.entity.Curso;
 import org.example.entity.Estudiante;
 import org.example.entity.Profesor;
-import org.example.service.ServiceCurso;
-import org.example.service.ServiceEstudiante;
-import org.example.service.ServiceInscripcion;
-import org.example.service.ServiceProfesor;
+import org.example.service.*;
 
 import java.util.List;
 
@@ -25,6 +22,8 @@ public class Main {
             ServiceCurso serviceCurso = new ServiceCurso();
             ServiceEstudiante serviceEstudiante = new ServiceEstudiante();
             ServiceInscripcion serviceInscripcion = new ServiceInscripcion();
+            ServiceReportes serviceReportes = new ServiceReportes();
+
 
 
             serviceProfesor.crearProfesores(em);
@@ -40,6 +39,15 @@ public class Main {
 
             System.out.println(" Todos los registros fueron insertados correctamente.");
 
+
+            System.out.println("Inscripciones por curso");
+            serviceReportes.listarIncripciones(em);
+
+            System.out.println("Estudiantes y sus incripciones");
+            serviceReportes.estudiantesInscripciones(em);
+
+            System.out.println("Estudiantes y incripciones ordenado");
+            serviceReportes.estudiantesConMasDeDosCursos(em);
         } catch (Exception e) {
             System.err.println(" Error general: " + e.getMessage());
         } finally {

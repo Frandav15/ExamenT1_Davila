@@ -41,7 +41,7 @@ public class Curso {
     }
 
 
-    public Curso(String codigo, String nombre, int creditos) {
+    public Curso( String nombre,String codigo, int creditos) {
 
         this.Nombre = nombre;
         this.Codigo = codigo;

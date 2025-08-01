@@ -12,6 +12,7 @@ public class Inscripcion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "fechaInscripcion")
     private Date FechaInscrpcion;
 

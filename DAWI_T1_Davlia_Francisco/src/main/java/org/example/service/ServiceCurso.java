@@ -23,7 +23,7 @@ public class ServiceCurso {
         Curso c3 = new Curso("Física I", "FIS103", 4);
         c3.setProfesores(Arrays.asList(profesores.get(0)));
 
-        Curso c4 = new Curso("Química General", "QUI104", 4);
+                Curso c4 = new Curso("Química General", "QUI104", 4);
         c4.setProfesores(Arrays.asList(profesores.get(1)));
 
         Curso c5 = new Curso("Historia del Perú", "HIS105", 3);
