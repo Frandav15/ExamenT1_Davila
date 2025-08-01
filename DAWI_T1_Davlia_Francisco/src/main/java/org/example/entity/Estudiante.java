@@ -35,7 +35,11 @@ public class Estudiante {
     public Estudiante(String nombre, String email, String matricula) {
         this.Nombre = nombre;
         this.Email = email;
+        this.Matricula = matricula;
     }
+
+    public Estudiante(){}
+
 
 
     public Long getId() {

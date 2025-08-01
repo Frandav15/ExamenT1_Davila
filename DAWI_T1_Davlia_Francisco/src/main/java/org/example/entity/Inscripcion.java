@@ -27,8 +27,17 @@ public class Inscripcion {
     @Column(name = "estado", nullable = false)
     private Estado estado;
 
-    public Inscripcion(Estudiante estudiante, Curso curso, Date date, Estado estado) {
+    public Inscripcion() {
+        // Constructor vacío requerido por Hibernate
     }
+
+    public Inscripcion(Estudiante estudiante, Curso curso, Date fechaInscripcion, Estado estado) {
+        this.estudiante = estudiante;
+        this.curso = curso;
+        this.FechaInscrpcion = fechaInscripcion;
+        this.estado = estado;
+    }
+
 
     public enum Estado {
         PENDIENTE,

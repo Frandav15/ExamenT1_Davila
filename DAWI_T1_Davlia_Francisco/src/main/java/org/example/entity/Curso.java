@@ -37,9 +37,17 @@ public class Curso {
         Codigo = codigo;
         Nombre = nombre;
     }
-
-    public Curso(String nombre, String codigo, int creditos) {
+    public Curso() {
     }
+
+
+    public Curso(String codigo, String nombre, int creditos) {
+
+        this.Nombre = nombre;
+        this.Codigo = codigo;
+        this.Creditos = creditos;
+    }
+
 
     public Long getId() {
         return Id;

@@ -4,7 +4,7 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
              https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
-    <persistence-unit name="EmpleadosPU">
+    <persistence-unit name="miUnidadPersistencia">
         <class>org.example.entity.Estudiante</class>
         <class>org.example.entity.Curso</class>
         <class>org.example.entity.Profesor</class>
@@ -12,7 +12,7 @@
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ bd_gestion_academica"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bd_gestion_academica"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value="mysql"/>
             <!-- Dialecto Hibernate -->

@@ -1,17 +1,50 @@
 package org.example;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import org.example.entity.Curso;
+import org.example.entity.Estudiante;
+import org.example.entity.Profesor;
+import org.example.service.ServiceCurso;
+import org.example.service.ServiceEstudiante;
+import org.example.service.ServiceInscripcion;
+import org.example.service.ServiceProfesor;
+
+import java.util.List;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("miUnidadPersistencia");
+        EntityManager em = emf.createEntityManager();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        try {
+            ServiceProfesor serviceProfesor = new ServiceProfesor();
+            ServiceCurso serviceCurso = new ServiceCurso();
+            ServiceEstudiante serviceEstudiante = new ServiceEstudiante();
+            ServiceInscripcion serviceInscripcion = new ServiceInscripcion();
+
+
+            serviceProfesor.crearProfesores(em);
+
+            List<Profesor> profesores = em.createQuery("SELECT p FROM Profesor p", Profesor.class).getResultList();
+            serviceCurso.insertarCursos(em, profesores);
+
+            serviceEstudiante.crearEstudiantes(em);
+
+            List<Estudiante> estudiantes = em.createQuery("SELECT e FROM Estudiante e", Estudiante.class).getResultList();
+            List<Curso> cursos = em.createQuery("SELECT c FROM Curso c", Curso.class).getResultList();
+            serviceInscripcion.registrarInscripciones(em, estudiantes, cursos);
+
+            System.out.println(" Todos los registros fueron insertados correctamente.");
+
+        } catch (Exception e) {
+            System.err.println(" Error general: " + e.getMessage());
+        } finally {
+            em.close();
+            emf.close();
         }
     }
 }

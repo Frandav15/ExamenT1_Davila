@@ -1,16 +1,19 @@
 package org.example.service;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import org.example.entity.Curso;
 import org.example.entity.Profesor;
-import org.hibernate.mapping.List;
+import java.util.List;
 
 import java.util.Arrays;
 
 public class ServiceCurso {
-    public void insertarCursos(EntityManager em, java.util.List<Profesor> profesores) {
-        em.getTransaction().begin();
+    public void insertarCursos(EntityManager em, List<Profesor> profesores) {
+        EntityTransaction tx = em.getTransaction();
+        try {
 
+        tx.begin();
         Curso c1 = new Curso("Álgebra", "MAT101", 4);
         c1.setProfesores(Arrays.asList(profesores.get(0), profesores.get(1)));
 
@@ -56,25 +59,19 @@ public class ServiceCurso {
         Curso c15 = new Curso("Educación Física", "EDF115", 2);
         c15.setProfesores(Arrays.asList(profesores.get(3)));
 
+        List<Curso> cursos = Arrays.asList(c1, c2, c3, c4,
+                c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15);
+            for (Curso curso : cursos) {
+                em.persist(curso);
+            }
 
-
-        em.persist(c1);
-        em.persist(c2);
-        em.persist(c3);
-        em.persist(c4);
-        em.persist(c5);
-        em.persist(c6);
-        em.persist(c7);
-        em.persist(c8);
-        em.persist(c9);
-        em.persist(c10);
-        em.persist(c11);
-        em.persist(c12);
-        em.persist(c13);
-        em.persist(c14);
-        em.persist(c15);
-
-        em.getTransaction().commit();
+        tx.commit();
+            System.out.println("Cursos registradas correctamente.");
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) tx.rollback();
+            e.printStackTrace();
+            System.out.println("no se puedo registrar cursos.");
+        }
     }
 
 }

@@ -18,7 +18,7 @@ public class Profesor {
     @Column(name = "especialidad", length = 100, nullable = false)
     private String Especialidad;
 
-    @ManyToMany(mappedBy = "profesor")
+    @ManyToMany(mappedBy = "profesores")
     private List<Curso> cursos;
 
     public Profesor(Long id, List<Curso> cursos, String especialidad, String nombre) {
@@ -29,10 +29,12 @@ public class Profesor {
     }
 
 
-
     public Profesor(String nombre, String especialidad) {
+        this.Nombre = nombre;
+        this.Especialidad = especialidad;
     }
 
+    public  Profesor(){}
     public Long getId() {
         return Id;
     }
